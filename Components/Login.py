@@ -16,19 +16,6 @@ class Ui_LogIn(object):
         with open(passManagerDB, "w") as pDB:
             json.dump(data, pDB, indent=2)
 
-    # def check_password(self):
-    #     password = self.passwordInput.text()
-    #     regex = ("^(?=.*[a-z])(?=." + "*[A-Z])(?=.*\\d)" + "(?=.*[-+_!@#$%^&*., ?]).+$")
-    #     p = re.compile(regex)
-    #     if re.search(p, password) and len(password) >= 8:
-    #         return True
-    #     else:
-    #         self.message.setPlainText("Password not strong Enough!")
-    #         self.message.setStyleSheet("color: red")
-    #         QTest.qWait(1500)
-    #         self.message.setPlainText("")
-    #         return False
-
     def check_user(self):
         uName = self.uNameInput.text()
         password = self.passwordInput.text()
@@ -51,12 +38,16 @@ class Ui_LogIn(object):
                     return True
 
                 else:
+                    self.uNameInput.clear()
+                    self.passwordInput.clear()
                     self.message.setPlainText("Wrong Password!")
                     self.message.setStyleSheet("color: red")
                     QTest.qWait(1500)
                     self.message.setPlainText("")
                     return False
         except:
+            self.uNameInput.clear()
+            self.passwordInput.clear()
             self.message.setPlainText("User Doesn't Exist!")
             self.message.setStyleSheet("color: red")
             QTest.qWait(1500)
@@ -79,6 +70,8 @@ class Ui_LogIn(object):
                 return True
 
             if allUsers[uName]:
+                self.uNameInput.clear()
+                self.passwordInput.clear()
                 self.message.setPlainText("User Allready Exists!")
                 self.message.setStyleSheet("color: red")
                 QTest.qWait(1500)

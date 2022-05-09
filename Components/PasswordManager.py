@@ -38,6 +38,7 @@ class Ui_PasswordManager(object):
                         self.passwordInput.text())
                     with open(passManagerDB, "w") as pDB:
                         json.dump(all_passwords, pDB, indent=2)
+
         except Exception as e:
             if check_password(self.passwordInput.text(), self.message, "Service Created!",
                               "Bad Password!"):
@@ -46,6 +47,10 @@ class Ui_PasswordManager(object):
 
                 with open(passManagerDB, "w") as pDB:
                     json.dump(all_passwords, pDB, indent=2)
+        finally:
+            self.userNameInput.clear()
+            self.passwordInput.clear()
+            self.nameOfServiceInput.clear()
 
     def open_password_dashboard(self, PasswordManager):
         self.passwordDash = QtWidgets.QMainWindow()
@@ -78,7 +83,6 @@ class Ui_PasswordManager(object):
         self.passwordInput.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordInput.setClearButtonEnabled(True)
         self.passwordInput.setObjectName("passwordInput")
-
         # -------------- Buttons ---------------
         self.manualyGenPass = QtWidgets.QPushButton(PasswordManager)
         self.manualyGenPass.setText("Generate")
