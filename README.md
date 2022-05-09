@@ -1,2 +1,2 @@
-# password-manager
-small python project that implements a password-manager
+# Password-Manager
+Local python project for password management.
